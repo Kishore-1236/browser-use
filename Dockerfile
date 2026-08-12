@@ -210,4 +210,7 @@ EXPOSE 9222
 # HEALTHCHECK --interval=30s --timeout=20s --retries=15 \
 #     CMD curl --silent 'http://localhost:8000/health/' | grep -q 'OK'
 
-ENTRYPOINT ["browser-use"]
+# ENTRYPOINT ["browser-use"]
+EXPOSE 10000
+
+ENTRYPOINT ["sh", "-c", "uvicorn server:app --host 0.0.0.0 --port ${PORT:-10000}"]
